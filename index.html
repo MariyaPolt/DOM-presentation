@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>DOM</h1>
+					<h3>(Document Object Model)</h3>
+					<div class="contacts" style="line-height: 25px">
+					 	<div style="text-align: right">
+							<small>Mariya Poltoratskaya</small>
+					 	</div>
+					 	<div style="text-align: right">
+							<small><a href="mailto:mariya.poltoratskaya@gmail.com">mariya.poltoratskaya@gmail.com</a></small>
+						</div>
+						<aside class="notes">
+							Hi, I am Mariya and I’m going to tell you about Document Object Model.
+						</aside>
+			 		</div>
+				</section>
+
+				<section>
+					<section>
+						<h4>What is DOM?</h4>
+						<p class="fragment">The Document Object Model (DOM) is presentation of the document as a tree of objects.</p>
+						<aside class="notes">
+							The Document Object Model (DOM) is the presentation of the document as a tree of objects. DOM is an API for HTML and XML documents.
+						</aside>
+					</section>
+					<section>
+						<h4>Example</h4>
+						<div style="width: 38%; display: inline-block" class="fragment">
+							<pre>
+								<code data-trim data-noescape>
+									&lt;!DOCTYPE html&gt;
+									&lt;html&gt;
+									&lt;head&gt;
+									  &lt;title&gt;MY TITLE&lt;/title&gt;
+									&lt;/head&gt;
+									&lt;body&gt;
+									&lt;div&gt;
+									  &lt;h1&gt;&lt;/h1&gt;
+									  &lt;p&gt;&lt;a&gt;&lt;/a&gt;&lt;/p&gt;
+									&lt;/div&gt;
+									&lt;/body&gt;
+									&lt;/html&gt;
+								</code>
+							</pre>
+						</div>
+
+						<div style="width: 60%; display: inline-block" class="fragment">
+							<img src="./img/dom.jpg" alt="DOM structure">
+						</div>
+						<aside class="notes">
+							We have a simple HTML-page w/ title in head, & div w/ children in body. *
+							This is the DOM of our HTML-page. The root element in the hierarchy of this DOM is HTML. Inside we have HEAD and BODY, so for HEAD & BODY, HTML is a direct parent.
+							As we can see in the picture, there are different types of nodes. Tags are represented as element nodes, and text inside tag is a text node. In general, there are 12 types of nodes, but the most commonly used are only 4 of them: element nodes, text nodes, document nodes & comment nodes.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>How can we use it?</h4>
+						<div>
+							<pre style="white-space: nowrap" class="fragment" data-fragment-index="1">
+								<code data-trim data-noescape class="javascript">
+									document.documentElement;
+								</code>
+							</pre>
+							<pre style="white-space: nowrap" class="fragment" data-fragment-index="2">
+								<code data-trim data-noescape class="javascript">
+									document.head;
+								</code>
+							</pre>
+							<pre style="white-space: nowrap"  class="fragment" data-fragment-index="2">
+								<code data-trim data-noescape class="javascript">
+									document.body;
+								</code>
+							</pre>
+						</div>
+						<aside class="notes">
+							Firstly we can get HTML object via document.documentElement. Also, we can obtain HEAD and BODY via document.head & document.body. DOM can be really powerful. We can add elements, we can remove elements, we can change the things inside elements. The possibilities are endless.
+						</aside>
+					</section>
+					<section>
+						<h4>NODE & ELEMENT PROPERTIES</h4>
+						<table class="fragment">
+							<th>Node</th>
+							<th>Element</th>
+							<tr>
+								<td>childNodes</td>
+								<td>children</td>
+							</tr>
+							<tr>
+								<td>firstChild</td>
+								<td>firstElementChild</td>
+							</tr>
+							<tr>
+								<td>lastChild</td>
+								<td>lastElementChild</td>
+							</tr>
+							<tr>
+								<td>nextSibling</td>
+								<td>nextElementSibling</td>
+							</tr>
+							<tr>
+								<td>previousSibling</td>
+								<td>previousElementSibling</td>
+							</tr>
+							<tr>
+								<td>parentNode</td>
+								<td>parentElement</td>
+							</tr>
+						</table>
+						<aside class="notes">
+							As mentioned, nodes can be of different types, one of which is an element. We can navigate through all nodes or only element nodes. All nodes have properties like firstChild or nextSibling. To navigate through only element nodes, sometimes it's enough to add an “Element” word in node properties.
+						</aside>
+					</section>
+					<section>
+						<h4>...Other element properties</h4>
+						<ul>
+							<li>id</li>
+							<li>innerHTML</li>
+							<li>childElementCount</li>
+							<li>attributes</li>
+						</ul>
+						<aside class="notes">
+							Elements also have own properties like id, innerHTML, childElementCount or attributes.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>How to get element from DOM?</h4>
+						<div>
+							<pre style="white-space: nowrap" class="fragment">
+								<code data-trim data-noescape class="javascript">
+									document.getElementById(id);
+								</code>
+							</pre>
+							<pre style="white-space: nowrap" class="fragment">
+								<code data-trim data-noescape class="javascript">
+									document.getElementsByTagName(tag);
+								</code>
+							</pre>
+							<pre style="white-space: nowrap"  class="fragment">
+								<code data-trim data-noescape class="javascript">
+									document.getElementsByClassName(className);
+								</code>
+							</pre>
+							<pre style="white-space: nowrap"  class="fragment">
+								<code data-trim data-noescape class="javascript">
+									document.querySelectorAll(css);
+								</code>
+							</pre>
+							<pre style="white-space: nowrap"  class="fragment">
+								<code data-trim data-noescape class="javascript">
+									document.querySelector(css);
+								</code>
+							</pre>
+						</div>
+						<aside class="notes">
+							Often, we need to get an element quickly from the DOM, wherever it is. There are different ways. One of them is getElementById().  It exists only in a document context. Other methods can be applied to any elements. querySelectorAll() & querySelector() are used to find elements by their css-selector.
+						</aside>
+					</section>
+					<section>
+						<h4>Live collections</h4>
+						<p>Live collections always reflect the current state of the document and “auto-update” when it changes.</p>
+						<aside class="notes">
+							Viewed methods can return live & non-live collections. All methods starting with "getElementsBy" return a live collection. Such collections always reflect the current state of the document and “auto-update” when it changes.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>How to create a new element?</h4>
+						<pre style="white-space: nowrap"  class="fragment">
+							<code data-trim data-noescape class="javascript">
+								document.createElement(tag);
+							</code>
+						</pre>
+						<aside class="notes">
+							To create a new element, we can use createElement() method.
+						</aside>
+					</section>
+					<section>
+						<h4>Example</h4>
+						<pre style="white-space: nowrap"  class="fragment">
+							<code data-trim data-noescape class="javascript">
+								const div = document.createElement('div');<br>
+								div.className = "smile";<br>
+								div.innerHTML = "&lt;p&gt;( ͡° ͜ʖ ͡° )&lt;/p&gt;";<br>
+								document.body.appendChild(div);
+							</code>
+						</pre>
+						<aside class="notes">
+							Let’s see an example how it works. We pass ‘div’ value to this method to make a div element. We can change the class name or inner HTML of a new element. To add it into HTML-page, we use appendChild() method.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4 style="text-transform: none">DocumentFragment</h4>
+						<p>The DocumentFragment interface represents a minimal document object that has no parent.</p>
+						<aside class="notes">
+							The DocumentFragment interface represents a minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document.
+						</aside>
+					</section>
+					<section>
+						<h4>Example</h4>
+						<pre style="white-space: nowrap"  class="fragment">
+							<code data-trim data-noescape class="javascript">
+								const fragment = document.createDocumentFragment();<br>
+								for (let i = 0; i < 5; i++) {<br>
+								&nbsp;&nbsp;fragment.appendChild(node);<br>
+								}<br>
+								document.body.appendChild(fragment);<br>
+							</code>
+						</pre>
+						<aside class="notes">
+							In this example we create a document fragment, then fill it w/ child nodes and append it to BODY.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>Other useful element properties</h4>
+						<aside class="notes">
+							Elements have many useful properties. Let’s look at 2 more of them. 
+						</aside>
+					</section>
+					<section>
+						<h4 style="text-transform: none">elem.classList</h4>
+							<pre style="white-space: nowrap" class="fragment" data-fragment-index="1">
+								<code data-trim data-noescape class="javascript">
+									element.classList.add(string);
+								</code>
+							</pre>
+							<pre style="white-space: nowrap" class="fragment" data-fragment-index="1">
+								<code data-trim data-noescape class="javascript">
+									element.classList.remove(string);
+								</code>
+							</pre>
+							<pre style="white-space: nowrap" class="fragment" data-fragment-index="2">
+								<code data-trim data-noescape class="javascript">
+									element.classList.toggle(string);
+								</code>
+							</pre>
+							<aside class="notes">
+								classList give us the possibility to add and remove element classes. One way to do that is to call add() and remove() methods, which take class names. Another way is to call toggle() method. It also takes a class name, then it checks if this class exists. If so, it removes it, otherwise – add. So, toggle() method works like toggle-switch.
+							</aside>
+					</section>
+					<section>
+						<h4 style="text-transform: none">elem.style</h4>
+						<p>Represents a collection of CSS property-value pairs set in elements style attribute</p>
+						<aside class="notes">
+							The last thing I want to mention is a STYLE property. It represents a collection of CSS property-value pairs set in the elements style attribute. STYLE property allows us to change values of CSS properties. 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<img src="./img/thank.gif" width="400px" style="background: none; border: none; box-shadow: none" alt="thank">
+					<aside class="notes">
+						Thanks for watching! 
+					</aside>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				transition: 'convex',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
