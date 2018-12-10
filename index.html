@@ -155,6 +155,14 @@
 				<section>
 					<section>
 						<h4>How to get element from DOM?</h4>
+
+						<aside class="notes">
+							Often, we need to get an element quickly from the DOM, wherever it is.
+						</aside>
+					</section>
+					<section>
+						<h4>Live collections</h4>
+						<p>Live collections always reflect the current state of the document and “auto-update” when it changes.</p>
 						<div>
 							<pre style="white-space: nowrap" class="fragment">
 								<code data-trim data-noescape class="javascript">
@@ -171,26 +179,27 @@
 									document.getElementsByClassName(className);
 								</code>
 							</pre>
-							<pre style="white-space: nowrap"  class="fragment">
+						</div>
+						<aside class="notes">
+							There are different methods to get an element from DOM and they can return live & non-live collections. All methods starting with "getElementsBy" return a live collection. Such collections always reflect the current state of the document and “auto-update” when it changes. One of them is getElementById(). It exists only in a document context. Other methods can be applied to any elements.
+						</aside>
+					</section>
+					<section>
+						<div>
+							<pre style="white-space: nowrap">
 								<code data-trim data-noescape class="javascript">
 									document.querySelectorAll(css);
 								</code>
 							</pre>
-							<pre style="white-space: nowrap"  class="fragment">
+							<pre style="white-space: nowrap">
 								<code data-trim data-noescape class="javascript">
 									document.querySelector(css);
 								</code>
 							</pre>
 						</div>
 						<aside class="notes">
-							Often, we need to get an element quickly from the DOM, wherever it is. There are different ways. One of them is getElementById().  It exists only in a document context. Other methods can be applied to any elements. querySelectorAll() & querySelector() are used to find elements by their css-selector.
-						</aside>
-					</section>
-					<section>
-						<h4>Live collections</h4>
-						<p>Live collections always reflect the current state of the document and “auto-update” when it changes.</p>
-						<aside class="notes">
-							Viewed methods can return live & non-live collections. All methods starting with "getElementsBy" return a live collection. Such collections always reflect the current state of the document and “auto-update” when it changes.
+							querySelectorAll() & querySelector() are used to find elements by their css-selector, they return non-live collections, so
+							it better to use them.
 						</aside>
 					</section>
 				</section>
@@ -209,7 +218,7 @@
 					</section>
 					<section>
 						<h4>Example</h4>
-						<pre style="white-space: nowrap"  class="fragment">
+						<pre style="white-space: nowrap">
 							<code data-trim data-noescape class="javascript">
 								const div = document.createElement('div');<br>
 								div.className = "smile";<br>
@@ -228,12 +237,18 @@
 						<h4 style="text-transform: none">DocumentFragment</h4>
 						<p>The DocumentFragment interface represents a minimal document object that has no parent.</p>
 						<aside class="notes">
-							The DocumentFragment interface represents a minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document.
+							The DocumentFragment interface represents a minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure.
+							<br>
+							Suppose we need to create a stack of elements and insert them into the DOM.
+							<br>
+							The first way is to create and paste them. And so n times.
+							<br>
+							But inserting in a live DOM is expensive. And here documentFragment comes to the rescue. We can insert into it, and only then add it to the DOM.
 						</aside>
 					</section>
 					<section>
 						<h4>Example</h4>
-						<pre style="white-space: nowrap"  class="fragment">
+						<pre style="white-space: nowrap">
 							<code data-trim data-noescape class="javascript">
 								const fragment = document.createDocumentFragment();<br>
 								for (let i = 0; i < 5; i++) {<br>
@@ -299,6 +314,7 @@
 
 		<script>
 			Reveal.initialize({
+				mouseWheel: true,
 				transition: 'convex',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
